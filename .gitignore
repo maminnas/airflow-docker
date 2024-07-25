@@ -1,1 +1,6 @@
-# .gitignore
+# logs
+*.log
+**/*.log
+
+# Python
+__pycache__
