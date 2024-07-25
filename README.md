@@ -1,9 +1,10 @@
-Juky 24th, 2024
+# Airflow Docker
 This is a template on how to setup Airflow with docker
 trying to add more to it as I learn along the way.
 e.g. external executers, docker oeprators, kubernetese pods, aws(MinIO), ML flows etc.
+This project was done on July 24th, 2024 mostly following documentations of (Apache Airflow website)[https://airflow.apache.org/].
 
-# Install Airflow
+## Install Airflow
 We can either install it using python and pip or install docker and use the official the airflow container (or can even make images from source files on git with our own changes added) (Link)[https://airflow.apache.org/docs/apache-airflow/stable/installation/index.html]
 
 We are focusing on dockerized version of airflow
@@ -38,8 +39,8 @@ Running Airflow
 docker compose up
 ```
 
-Then in your DAG directory you can define a dag. a dag is defined as a python code.
-It used DAG module from airflow and we can define tasks and their order and save it.
-The airflow webserver then should be able to pick this up and list it as one of the dags.
+Then in your DAG directory you can define your DAGs an it would be picked up by the shared volumes of containers. A DAG is defined as a python code.
+It uses DAG module from airflow and we can define tasks and their order of dependancies.
+After we save it the airflow webserver then should be able to pick this up and list it as one of the DAGs on the UI.
 
 For now I just added a very simple example with two BashOperators coming one after the other.
