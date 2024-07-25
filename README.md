@@ -1,7 +1,7 @@
 # Airflow Docker
 This is a template on how to setup Airflow with docker
 trying to add more to it as I learn along the way.
-e.g. external executers, docker oeprators, kubernetese pods, aws(MinIO), ML flows etc.
+e.g. external executers, docker operators, kubernetes pods, AWS(MinIO), ML flows etc.
 This project was done on July 24th, 2024 mostly following documentations of (Apache Airflow website)[https://airflow.apache.org/].
 
 ## Install Airflow
