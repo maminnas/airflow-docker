@@ -57,4 +57,4 @@ We can define differente variety of tasks in a DAG. We start simple by adding Ba
 
 ## XCOM
 
-To pass values across tasks we can use XCOM. A task usually pushes it's return valye into XCOM but you can explicitly push results into XCOM if needed using `ti.xcom_push(key, value)` and pull the results from XCOM using ti.xcom_pull(task_ids, key)
+To pass values across tasks we can use XCOM. A task usually pushes it's return valye into XCOM but you can explicitly push results into XCOM if needed using `ti.xcom_push(key, value)` and pull the results from XCOM using `ti.xcom_pull(task_ids, key)`. You can find the example in `myPythonOperator.py`
