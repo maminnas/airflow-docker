@@ -62,3 +62,11 @@ To pass values across tasks we can use XCOM. A task usually pushes it's return v
 ## TaskFlow API
 
 In this variation we define our DAGs using `airflow.decorators` specifically `@dag` and `@task` and let it infere the dependancy. You can find the sample code in `taskFlow.py`. To pass the returned values into XCOM, if they need to return more than one value you should specify `multiple_outputs=True` in the `@task` section.
+
+# Postgres Connector
+
+One of the main use cases of Airflow is for ETL and that certainly requires connection to databases. Here we try out a connection with our postgres that is running on docker for out airflow. We update our `docker-compose.yaml` to expose the postgres port and make it accessible to other connectors.
+
+The first step is to define a connection on airflow web page. We go to Admin -> Connections. From there we set a name for the connection_id, type of connection, and required information for connection e.g. host, schema, user, pass, port, access_key, etc. The id is used in DAG codes to be used with the appropriate Operators (in this case with PostgresOperator). To connecnt to a docker hosted postgres we use `host.docker.internal` instead of `localhost`.
+Checkout the code in `myPostgresOperator.py` for more details on the usage of the `postgresOperator`.
+In the code you can see that `{{ Jinja templating }}` is used in the sql query to access some runtime variables or pass some parameters.
