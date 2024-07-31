@@ -58,3 +58,7 @@ We can define differente variety of tasks in a DAG. We start simple by adding Ba
 ## XCOM
 
 To pass values across tasks we can use XCOM. A task usually pushes it's return valye into XCOM but you can explicitly push results into XCOM if needed using `ti.xcom_push(key, value)` and pull the results from XCOM using `ti.xcom_pull(task_ids, key)`. You can find the example in `myPythonOperator.py`
+
+## TaskFlow API
+
+In this variation we define our DAGs using `airflow.decorators` specifically `@dag` and `@task` and let it infere the dependancy. You can find the sample code in `taskFlow.py`. To pass the returned values into XCOM, if they need to return more than one value you should specify `multiple_outputs=True` in the `@task` section.
