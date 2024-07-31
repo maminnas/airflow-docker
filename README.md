@@ -44,3 +44,17 @@ It uses DAG module from airflow and we can define tasks and their order of depen
 After we save it the airflow webserver then should be able to pick this up and list it as one of the DAGs on the UI.
 
 For now I just added a very simple example with two BashOperators coming one after the other.
+
+## DAGs
+
+We can define differente variety of tasks in a DAG. We start simple by adding Bash Operator and Python Operator. Then extend this with more complex and yet very commonly used task types e.g. S3 bucket, docker, kubernetes, run ML model etc.
+
+## DAG Definition
+
+1. Default: The sample file `myBashOperator.py` has a simple example. We instantiate a DAG with the needed arguments and then define each task according to our need. Finally, we specify the upstrea/downstream of the tasks and the order of execution for the DAG.
+
+2. Task Flow API: In this variation we define our dag and their tasks using decorators @dag and @task and the dependency is inferred from this.
+
+## XCOM
+
+To pass values across tasks we can use XCOM. A task usually pushes it's return valye into XCOM but you can explicitly push results into XCOM if needed using `ti.xcom_push(key, value)` and pull the results from XCOM using ti.xcom_pull(task_ids, key)
