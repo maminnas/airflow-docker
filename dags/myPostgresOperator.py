@@ -50,6 +50,8 @@ with DAG(
         """
     )
 
+    # to ensure idempotency of result and avoid failure of insert on duplicate records
+    # we make a task to run before insertion to delete the record if it already exists
     task3 = PostgresOperator(
         task_id='delete_record_of_last_run',
         postgres_conn_id='postgres_localhost',
