@@ -11,7 +11,7 @@ default_args={
 
 with DAG(
     default_args=default_args,
-    dag_id='dag_with_postgres_operator_v04',
+    dag_id='dag_with_postgres_operator_v05',
     description="This dag is to try out Postgres connection",
     start_date=datetime(2024,7,30, 10),
     schedule_interval='0 0 * * *',
@@ -50,4 +50,16 @@ with DAG(
         """
     )
 
-    task1 >> task2
+    task3 = PostgresOperator(
+        task_id='delete_record_of_last_run',
+        postgres_conn_id='postgres_localhost',
+        params={
+            'database': 'postgres',
+            'table_name': table_name,
+        },
+        sql="""
+            DELETE FROM {{ params.table_name }} WHERE ds = '{{ ds }}' AND dag_id = '{{ dag.dag_id }}'
+        """
+    )
+
+    task1 >> task3 >> task2
